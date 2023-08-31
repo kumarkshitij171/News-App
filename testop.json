@@ -1,0 +1,45 @@
+{
+    "status": "ok",
+    "totalResults": 33,
+    "articles": [
+        {
+            "source": {
+                "id": "cnn",
+                "name": "CNN"
+            },
+            "author": "Zachary Cohen",
+            "title": "First Trump co-defendant surrenders to Fulton County jail - CNN",
+            "description": "Scott Hall, one of former President Donald Trump’s 18 co-defendants in Georgia, turned himself in to the Fulton County jail on Tuesday.",
+            "url": "https://www.cnn.com/2023/08/22/politics/scott-hall-surrender-jail-trump/index.html",
+            "urlToImage": "https://media.cnn.com/api/v1/images/stellar/prod/230821133155-01-scott-hall-082123.jpg?c=16x9&q=w_800,c_fill",
+            "publishedAt": "2023-08-22T14:10:00Z",
+            "content": "Scott Hall, one of former President Donald Trumps 18 co-defendants in Georgia,turned himself in to the Fulton County jail on Tuesday.\r\nHall, who works as a bail bondsman in Atlanta, was charged by Fu… [+1236 chars]"
+        },
+        {
+            "source": {
+                "id": "independent",
+                "name": "Independent"
+            },
+            "author": "Bevan Hurley",
+            "title": "Travis Ikeguchi's anti-LGBT+ posts revealed after Laura Carleton murder – live - The Independent",
+            "description": "Community members describe Laura Carleton as a ‘remarkable figure’ dedicated to creating a ‘safe and inclusive space’ at her shop",
+            "url": "https://www.independent.co.uk/news/world/americas/crime/laura-carleton-travis-ikeguchi-california-pride-flag-b2397016.html",
+            "urlToImage": "https://static.independent.co.uk/2023/08/21/04/pride%20row%201.JPG?quality=75&width=1200&auto=webp",
+            "publishedAt": "2023-08-22T14:00:39Z",
+            "content": "Sign up to our free US news bulletin sent straight to your inbox each weekday morning\r\nSign up to our free morning US email news bulletin\r\nThe 27-year-old California man who shot and killed Laura Lau… [+9269 chars]"
+        },
+        {
+            "source": {
+                "id": "al-jazeera-english",
+                "name": "Al Jazeera English"
+            },
+            "author": "Al Jazeera",
+            "title": "Rescue on after children trapped in cable car dangling over Pakistan ravine - Al Jazeera English",
+            "description": "Six children and two teachers are stranded in a gondola in a mountainous area in Battagram, north of Islamabad.",
+            "url": "https://www.aljazeera.com/news/2023/8/22/rescue-on-after-children-trapped-in-cable-car-dangling-over-pakistan-ravine",
+            "urlToImage": "https://www.aljazeera.com/wp-content/uploads/2023/08/image-55.jpg?resize=1920%2C1080&quality=80",
+            "publishedAt": "2023-08-22T10:38:43Z",
+            "content": "Six children and two teachers are trapped in a gondola dangling 274 metres (900ft) above a ravine in Pakistan after a cable had snapped, and high winds are hampering an extremely risky helicopter res… [+2099 chars]"
+        }
+    ]
+}

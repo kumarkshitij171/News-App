@@ -1,104 +1,78 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import NewsItem from './NewsItem';
 import Spinner from './Spinner';
 
-export default class News extends Component {
-    
-    capitalize=(string) =>{
+const News = (props) => {
+
+    const capitalize = (string) => {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
+    const [articles, setArticles] = useState([])
+    const [loading, setLoading] = useState(false)
+    const [page, setPage] = useState(1)
+    const [totalResults, setTotalResults] = useState(0)
+    const dummyUrl = "https://cdn.ndtv.com/common/images/ogndtv.png";
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            articles: [],
-            loading: 'false',
-            // may be some spinner we run while loading
-            page: 1,
-            dummyUrl : "https://cdn.ndtv.com/common/images/ogndtv.png",
-        }
-        
-        document.title=`NewsApp-${this.capitalize(this.props.category)}`       
-    }
+    document.title=`NewsApp-${capitalize(props.category)}`       
 
-    
+    useEffect(() => {
+        //   it runs before page reload
+        updateNews()
+        // to remove the warning no dependency array is there
+        // eslint-disable-next-line
+    }, [])
 
-    async componentDidMount() {
-      //console.log("cdm");
-      //   it runs before render method runs
-      let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apikey}&page=1&pageSize=${this.props.pageSize}`
-    //   url = "block"
-      this.setState({loading:true})
-      let data = await fetch(url)
-      //   console.log(data);
-      let parsedData = await data.json()
-      // console.log(parsedData);
-      this.setState({
-        articles: parsedData.articles,
-        loading : false
-    })
-    }
-    dummyUrl = "https://cdn.ndtv.com/common/images/ogndtv.png"
-
-
-    handlePrevClick=async()=>{
-        let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apikey}&page=${this.state.page-1}&pageSize=${this.props.pageSize}`
-        this.setState({loading:true})
+    const setNews = async(pageno)=>{
+        let url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apikey}&page=${pageno}&pageSize=${props.pageSize}`
+        setLoading(true)
         let data = await fetch(url)
         let parsedData = await data.json()
-        this.setState({
-            articles: parsedData.articles,
-            totalResults: parsedData.totalResults 
-        })
+        setArticles(parsedData.articles)
+        setTotalResults(parsedData.totalResults)
+        // have to set page no from where call the function
+        setArticles(parsedData.articles)
+        setLoading(false)
 
-        this.setState({
-            page: this.state.page-1,
-            articles: parsedData.articles,
-            loading : false
-        })
     }
-    
-    handleNextClick=async()=>{
-        if(!(this.state.page+1 > Math.ceil(this.state.totalResults/this.props.pageSize))){  
-            let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apikey}&page=${this.state.page+1}&pageSize=${this.props.pageSize}`
-            this.setState({loading:true})
-            let data = await fetch(url)
-            let parsedData = await data.json()
-            this.setState({
-                articles: parsedData.articles,
-                totalResults: parsedData.totalResults
-            })
-            
-            this.setState({
-                page: this.state.page+1,
-                articles: parsedData.articles,
-                loading : false
-            })
-            console.log(this.state.page);
+    const updateNews = async () => {
+        setNews(page);
+    }
+
+
+    const handlePrevClick = async () => {
+        setNews(page-1)
+        setPage(page - 1)
+    }
+
+    const handleNextClick = async () => {
+        if (!(page + 1 > Math.ceil(totalResults / props.pageSize))) {
+            setNews(page+1)
+            setPage(page + 1)
         }
     }
-    
-    render() {
-        return (
-            <>
-            
-                <h2 className='text-center my-4'>News App - Top {this.capitalize(this.props.category)} Headlines</h2>
-                {this.state.loading && <Spinner/>}
-                
-                {!this.state.loading &&<div className="d-flex flex-wrap" >
-                    {this.state.articles.map((element) => {
-                        return <div key={element.url}>
-                                <NewsItem tittle={element.title?element.title.slice(0, 45):""} description={element.description?element.description.slice(0, 88):""} imgUrl={!element.urlToImage?this.dummyUrl:element.urlToImage} newsUrl={element.url} />
-                            </div>
-                    })}
-                </div>}
 
-                <div className="container d-flex justify-content-between">
-                <button disabled={this.state.page<=1} type="button" className="btn btn-success mb-3" onClick={this.handlePrevClick}>&larr; Previous</button>
+    return (
+        <>
 
-                <button disabled = {(this.state.page+1)>Math.ceil(this.state.totalResults/this.props.pageSize)} type="button" className="btn btn-success mb-3" onClick={this.handleNextClick}>Next &rarr;</button>
-                </div>
-            </>
-        )
-    }
+            <h2 className='text-center my-4'>News App - Top {capitalize(props.category)} Headlines</h2>
+            {loading && <Spinner />}
+
+            {!loading && <div className="d-flex flex-wrap" >
+                {articles.map((element) => {
+                    return <div key={element.url}>
+                        <NewsItem tittle={element.title ? element.title.slice(0, 45) : ""} description={element.description ? element.description.slice(0, 88) : ""} imgUrl={!element.urlToImage ? dummyUrl : element.urlToImage} newsUrl={element.url} />
+                    </div>
+                })}
+            </div>}
+
+            <div className="container d-flex justify-content-between">
+                <button disabled={page <= 1} type="button" className="btn btn-success mb-3" onClick={handlePrevClick}>&larr; Previous</button>
+
+                <button disabled={(page + 1) > Math.ceil(totalResults / props.pageSize)} type="button" className="btn btn-success mb-3" onClick={handleNextClick}>Next &rarr;</button>
+            </div>
+        </>
+    )
+
 }
+
+export default News

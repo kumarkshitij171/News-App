@@ -11,7 +11,7 @@ const News = (props) => {
     const [loading, setLoading] = useState(false)
     const [page, setPage] = useState(1)
     const [totalResults, setTotalResults] = useState(0)
-    const dummyUrl = "https://cdn.ndtv.com/common/images/ogndtv.png";
+    const dummyUrl = "https://media4.s-nbcnews.com/i/newscms/2019_01/2705191/nbc-social-default_b6fa4fef0d31ca7e8bc7ff6d117ca9f4.png";
 
     document.title=`NewsApp-${capitalize(props.category)}`       
 
@@ -21,6 +21,13 @@ const News = (props) => {
         // to remove the warning no dependency array is there
         // eslint-disable-next-line
     }, [])
+
+    // this will run when country is changed
+    useEffect(() => {
+        updateNews()
+        setPage(1)
+        // eslint-disable-next-line
+    }, [props.country])
 
     const setNews = async(pageno)=>{
         let url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apikey}&page=${pageno}&pageSize=${props.pageSize}`

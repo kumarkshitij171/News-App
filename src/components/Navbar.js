@@ -1,7 +1,9 @@
 import React from 'react'
 import { Link } from "react-router-dom"
+import CountryOpt from './CountryOpt'
 
-const Navbar = () => {
+const Navbar = (props) => {
+    const { country, setCountry } = props
     return (
         <>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark ">
@@ -30,11 +32,11 @@ const Navbar = () => {
                                 <Link className="nav-link " aria-current="page" to="/technology">Technology</Link></li>
                         </ul>
                     </div>
+                    <CountryOpt country={country} setCountry={setCountry} />
                 </div>
             </nav>
         </>
     )
 }
-
 
 export default Navbar

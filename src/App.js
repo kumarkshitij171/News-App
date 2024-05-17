@@ -21,7 +21,7 @@ const App =()=> {
             <Route exact path="/entertainment" element={<News key='entertainment' pageSize={12} country={country} apikey={apikey} category={'entertainment'} />} />
             <Route exact path="/health" element={<News key='health' pageSize={12} country={country} apikey={apikey} category={'health'} />} />
             <Route exact path="/science" element={<News key='science' pageSize={12} country={country} apikey={apikey} category={'science'} />} />
-            <Route exact path="/sports" element={<News key='sports' pageSize={12} country={country} apikey={apikey} category={'science'} />} />
+            <Route exact path="/sports" element={<News key='sports' pageSize={12} country={country} apikey={apikey} category={'sport'} />} />
             <Route exact path="/technology" element={<News key='technology' pageSize={12} country={country} apikey={apikey} category={'technology'} />} />
           </Routes>
         </BrowserRouter>

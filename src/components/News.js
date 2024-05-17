@@ -11,6 +11,7 @@ const News = (props) => {
     const [loading, setLoading] = useState(false)
     const [page, setPage] = useState(1)
     const [totalResults, setTotalResults] = useState(0)
+    // if there is no image then use this dummy image
     const dummyUrl = "https://media4.s-nbcnews.com/i/newscms/2019_01/2705191/nbc-social-default_b6fa4fef0d31ca7e8bc7ff6d117ca9f4.png";
 
     document.title=`NewsApp-${capitalize(props.category)}`       

@@ -7,9 +7,9 @@ This is a news app that utilizes an API to fetch and display news articles. User
 - Fetches news articles from an API to ensure the latest and up-to-date information.
 - Allows users to filter news articles based on different categories such as technology, sports, business, and more.
 - Provides a user-friendly interface for easy navigation and a pleasant user experience.
-- Enables users to read full articles by clicking on the news headlines.
-- Offers a search functionality to quickly find news articles of interest.
+- Enables users to read full articles by clicking on the Read more button.
 - Users can select the country to view personalized news.
+- Navigate seamlessly through articles: effortlessly browse previous and next news for a comprehensive understanding of evolving stories.
 
 ## Installation
 1. Clone the repository to your local machine.
